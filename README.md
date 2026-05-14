@@ -2,6 +2,8 @@
 
 A live analytics dashboard that merges Google Sheets data with uploaded CSV/Excel files and visualises the combined dataset through interactive charts, KPI cards, and a searchable data table.
 
+Live Demo:https://sheet-stream.vercel.app/
+
 ---
 
 ## Overview
@@ -67,6 +69,7 @@ npm run dev
 ```bash
 npm run build
 ```
+https://sheet-stream.vercel.app/
 
 Deploy the `dist/` output to any static host. The `vercel.json` rewrite rule handles SPA routing on Vercel.
 

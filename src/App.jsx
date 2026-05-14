@@ -1,5 +1,10 @@
 import Dashboard from "@/pages/Dashboard";
+import { DashboardProvider } from "@/context/DashboardContext";
 
 export default function App() {
-  return <Dashboard />;
+  return (
+    <DashboardProvider>
+      <Dashboard />
+    </DashboardProvider>
+  );
 }

@@ -114,7 +114,7 @@ export default function KPIGrid() {
     const prevAvgScore = mean(prevMerged, "score");
     const scoreColor =
       avgScore == null ? "default"
-      : avgScore > 70  ? "green"
+      : avgScore > 70  ? "default"
       : avgScore >= 50 ? "amber"
       :                  "red";
 

@@ -123,13 +123,13 @@ export default function ScoreBarChart() {
             {/* Target reference line */}
             <ReferenceLine
               y={TARGET}
-              stroke="#f59e0b"
+              stroke="#6366f1"
               strokeDasharray="4 3"
               strokeWidth={1.5}
               label={{
                 value: "Target",
                 position: "insideTopRight",
-                fill: "#f59e0b",
+                fill: "#6366f1",
                 fontSize: 10,
                 fontWeight: 600,
                 dy: -4,

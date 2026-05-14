@@ -61,9 +61,11 @@ export function applyFilters(mergedData = [], filters = {}) {
     caseType = null,
     status = null,
     source = null,
+    textSearch = null,
   } = filters;
 
   const { start = null, end = null } = dateRange ?? {};
+  const q = textSearch ? textSearch.toLowerCase() : null;
 
   return mergedData.filter((row) => {
     // ── Date range (inclusive ISO string comparison) ───────────────────────
@@ -83,6 +85,15 @@ export function applyFilters(mergedData = [], filters = {}) {
     // ── Source ────────────────────────────────────────────────────────────
     if (source && source !== "all") {
       if (row.source !== source) return false;
+    }
+
+    // ── Global text search (user_id, case_type, status) ───────────────────
+    if (q) {
+      const haystack = [row.user_id, row.case_type, row.status]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+      if (!haystack.includes(q)) return false;
     }
 
     return true;

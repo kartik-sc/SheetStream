@@ -9,7 +9,7 @@ import { useFileUpload } from "@/hooks/useFileUpload";
  *   onData          (rows: object[]) => void   — receives the parsed row array
  *   schemaWarnings  string[]                   — extra columns detected by mergeData
  */
-export default function FileUpload({ onData, schemaWarnings = [] }) {
+export default function FileUpload({ onData, schemaWarnings = [], compact = false }) {
   const inputRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   const [fileInfo, setFileInfo] = useState(null); // { name, rowCount }
@@ -48,6 +48,32 @@ export default function FileUpload({ onData, schemaWarnings = [] }) {
     processFile(e.target.files?.[0]);
     // Reset input so the same file can be re-uploaded if needed.
     e.target.value = "";
+  }
+
+  // ── Compact mode: just a small upload button ─────────────────────────────
+  if (compact) {
+    return (
+      <>
+        <input
+          ref={inputRef}
+          type="file"
+          accept=".csv,.xls,.xlsx"
+          className="sr-only"
+          onChange={onInputChange}
+        />
+        <button
+          onClick={() => inputRef.current?.click()}
+          disabled={uploading}
+          className="flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-foreground disabled:opacity-50 transition-colors"
+        >
+          {uploading
+            ? <div className="h-3.5 w-3.5 animate-spin rounded-full border border-muted-foreground border-t-foreground" />
+            : <Upload className="h-3.5 w-3.5" />
+          }
+          {fileInfo ? `${fileInfo.name} (${fileInfo.rowCount})` : "Upload CSV / Excel"}
+        </button>
+      </>
+    );
   }
 
   return (

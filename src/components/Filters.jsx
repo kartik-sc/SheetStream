@@ -56,31 +56,44 @@ export default function Filters() {
 
   return (
     <div className="card px-4 py-3">
-      <div className="flex flex-wrap items-end gap-3">
-
-        {/* Label */}
-        <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground self-center mr-1">
+      {/* Row 1: label + reset */}
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
           <SlidersHorizontal className="h-3.5 w-3.5" />
           Filters
         </div>
+        {isFiltered && (
+          <button
+            type="button"
+            onClick={resetFilters}
+            className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-foreground transition-colors"
+          >
+            <RotateCcw className="h-3 w-3" />
+            Reset
+          </button>
+        )}
+      </div>
+
+      {/* Row 2: controls — column on mobile, row on sm+ */}
+      <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end">
 
         {/* Date range */}
-        <fieldset className="flex flex-col gap-1 min-w-0">
+        <fieldset className="flex flex-col gap-1">
           <legend className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-1">
             Date Range
           </legend>
           <div className="flex items-center gap-1.5">
             <Input
               type="date"
-              className="w-36"
+              className="w-full sm:w-36"
               value={filters.dateRange.start ?? ""}
               max={filters.dateRange.end ?? undefined}
               onChange={(e) => setDateRange("start", e.target.value)}
             />
-            <span className="text-xs text-muted-foreground">→</span>
+            <span className="text-xs text-muted-foreground shrink-0">→</span>
             <Input
               type="date"
-              className="w-36"
+              className="w-full sm:w-36"
               value={filters.dateRange.end ?? ""}
               min={filters.dateRange.start ?? undefined}
               onChange={(e) => setDateRange("end", e.target.value)}
@@ -89,7 +102,7 @@ export default function Filters() {
         </fieldset>
 
         {/* Case Type */}
-        <fieldset className="flex flex-col gap-1 min-w-[140px]">
+        <fieldset className="flex flex-col gap-1">
           <legend className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-1">
             Case Type
           </legend>
@@ -104,7 +117,7 @@ export default function Filters() {
         </fieldset>
 
         {/* Status */}
-        <fieldset className="flex flex-col gap-1 min-w-[130px]">
+        <fieldset className="flex flex-col gap-1">
           <legend className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-1">
             Status
           </legend>
@@ -129,18 +142,6 @@ export default function Filters() {
             options={SOURCES}
           />
         </fieldset>
-
-        {/* Reset */}
-        {isFiltered && (
-          <button
-            type="button"
-            onClick={resetFilters}
-            className="ml-auto flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-foreground transition-colors self-end"
-          >
-            <RotateCcw className="h-3 w-3" />
-            Reset
-          </button>
-        )}
       </div>
     </div>
   );

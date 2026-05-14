@@ -2,22 +2,10 @@ import { TrendingUp, TrendingDown, Minus } from "lucide-react";
 import { cn } from "@/utils/cn";
 
 const colorMap = {
-  default: {
-    icon: "bg-primary/10 text-primary",
-    badge: "",
-  },
-  green: {
-    icon: "bg-[hsl(var(--green-bg))] text-[hsl(var(--green))]",
-    badge: "",
-  },
-  amber: {
-    icon: "bg-[hsl(var(--amber-bg))] text-[hsl(var(--amber))]",
-    badge: "",
-  },
-  red: {
-    icon: "bg-[hsl(var(--red-bg))] text-[hsl(var(--red))]",
-    badge: "",
-  },
+  default: { icon: "bg-indigo-500/10 text-indigo-600" },
+  green:   { icon: "bg-indigo-500/10 text-indigo-600" },
+  amber:   { icon: "bg-violet-500/10 text-violet-600" },
+  red:     { icon: "bg-rose-500/10   text-rose-500"   },
 };
 
 /**
@@ -34,8 +22,8 @@ export default function KPICard({ title, value, delta, icon: Icon, color = "defa
   const deltaColor    = deltaZero
     ? "text-muted-foreground"
     : deltaPositive
-    ? "text-[hsl(var(--green))]"
-    : "text-[hsl(var(--red))]";
+    ? "text-indigo-600"
+    : "text-rose-500";
 
   return (
     <div className="card group flex flex-col gap-4 p-5 transition-shadow duration-200 hover:shadow-md">

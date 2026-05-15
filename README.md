@@ -2,7 +2,8 @@
 
 A live analytics dashboard that merges Google Sheets data with uploaded CSV/Excel files and visualises the combined dataset through interactive charts, KPI cards, and a searchable data table.
 
-Live Demo:https://sheet-stream.vercel.app/
+Live Demo: https://github.com/kartik-sc/SheetStream/releases/tag/v1.0.0
+Link: https://sheet-stream.vercel.app/
 
 ---
 
